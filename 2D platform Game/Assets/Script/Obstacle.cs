@@ -8,6 +8,7 @@ public class Obstacle : MonoBehaviour
     Rigidbody2D rb;
     public float minSpeed = 50f;
     public float maxSpeed = 150f;
+    public float maxSpinSpeed = 10f;
 
     void Start()
     {
@@ -15,8 +16,10 @@ public class Obstacle : MonoBehaviour
         float randomSize = Random.Range(minSize, maxSize);
         transform.localScale = new Vector3(randomSize, randomSize, 1);
         rb = GetComponent<Rigidbody2D>();
-        float randomSpeed = Random.Range(minSpeed, maxSpeed);
+        float randomSpeed = Random.Range(minSpeed, maxSpeed) / randomSize;
         rb.AddForce(randomDirection * randomSpeed);
+        float randomTorque = Random.Range(-maxSpinSpeed, maxSpinSpeed);
+        rb.AddTorque(randomTorque);
     }
 
     // Update is called once per frame
