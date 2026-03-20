@@ -3,11 +3,11 @@ using UnityEngine;
 public class Obstacle : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    float minSize = 0.75f;
-    float maxSize = 3f;
+    public float minSize = 0.75f;
+    public float maxSize = 3f;
     Rigidbody2D rb;
-    float minSpeed = 50f;
-    float maxSpeed = 150f;
+    public float minSpeed = 50f;
+    public float maxSpeed = 150f;
 
     void Start()
     {
