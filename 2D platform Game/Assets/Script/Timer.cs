@@ -13,6 +13,5 @@ public class Chronometre : MonoBehaviour
         // Formatage pour afficher minutes:secondes
         int minutes = Mathf.FloorToInt(tempsEcoule / 60F);
         int secondes = Mathf.FloorToInt(tempsEcoule % 60F);
-        timerText.text = "Timer : " + string.Format("{0:00}:{1:00}", minutes, secondes);
     }
 }

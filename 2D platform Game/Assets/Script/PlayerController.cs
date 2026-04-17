@@ -28,6 +28,14 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Destroy(gameObject); // Détruit le gameobject en cas de collision
+        if (GameManager.Instance.currentState == GameManager.GameState.Playing)
+        {
+            GameManager.Instance.TriggerGameOver();
+  
+            Destroy(gameObject);
+        }
+        // Détruit le gameobject en cas de collision
+        //
+    
     }
 }
