@@ -6,8 +6,8 @@ public class Obstacle : MonoBehaviour
     public float minSize = 0.75f;
     public float maxSize = 3f;
     Rigidbody2D rb;
-    public float minSpeed = 50f;
-    public float maxSpeed = 150f;
+    public float minSpeed = 5f;
+    public float maxSpeed = 15f;
     public float maxSpinSpeed = 10f;
 
     void Start()
@@ -25,6 +25,26 @@ public class Obstacle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
+    }
+
+    void FixedUpdate() // Utilise FixedUpdate pour la physique
+    {
+        // On vérifie la magnitude (la longueur du vecteur vitesse)
+        if (rb.linearVelocity.magnitude < minSpeed)
+        {
+            // On ré-applique la vitesse minimum tout en gardant la direction actuelle
+            rb.linearVelocity = rb.linearVelocity.normalized * minSpeed;
+        }
+
+        float distanceFromCenter = Vector2.Distance(transform.position, Vector2.zero);
+
+       
+        if (distanceFromCenter > 10f)
+        {
+            Vector2 directionToCenter = (Vector2.zero - (Vector2)transform.position).normalized;
+            rb.AddForce(directionToCenter * 5f);
+            Debug.LogError("Asteroide -> Center Trigger");
+        }
     }
 }
