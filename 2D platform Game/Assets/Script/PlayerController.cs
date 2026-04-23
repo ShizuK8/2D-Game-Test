@@ -6,9 +6,11 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D rb;
     public float thrustForce = 1f;
     public float maxSpeed = 5f;
+    
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        GetComponent<LifeSystem>();
     }
 
     void Update()
@@ -28,14 +30,11 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (GameManager.Instance.currentState == GameManager.GameState.Playing)
+       LifeSystem.instance.Life = LifeSystem.instance.Life - 1;
+        if ((LifeSystem.instance.Life == 0) & (GameManager.Instance.currentState == GameManager.GameState.Playing))
         {
+           
             GameManager.Instance.TriggerGameOver();
-  
-            Destroy(gameObject);
         }
-        // Détruit le gameobject en cas de collision
-        //
-    
     }
 }

@@ -44,7 +44,6 @@ public class Obstacle : MonoBehaviour
         {
             Vector2 directionToCenter = (Vector2.zero - (Vector2)transform.position).normalized;
             rb.AddForce(directionToCenter * 5f);
-            Debug.LogError("Asteroide -> Center Trigger");
         }
     }
 }
